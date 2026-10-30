@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f9efe6">
+<title>Carte d'annonce — Ibrahim &amp; Sita</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--rust:#c17a4e;--cream:#fbf2e9;--ink:#5a3d2b;--muted:#8a6a51;--gold:#c7a46a}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#e9e2d8;font-family:'DM Sans',sans-serif;padding:24px}
+.card{position:relative;width:760px;max-width:100%;aspect-ratio:10/7;background:var(--cream);overflow:hidden;box-shadow:0 30px 70px #00000022;border-radius:4px}
+.bar{position:absolute;left:0;top:0;bottom:0;width:18%;background:var(--rust)}
+.bar-inner{position:absolute;left:4%;top:4%;bottom:4%;width:12%;border:1.5px solid #e8c9a8;opacity:.55}
+.rings{position:absolute;left:50%;top:9%;transform:translateX(-50%);width:68px;filter:drop-shadow(0 6px 10px #0000002a)}
+.content{position:absolute;right:6%;top:0;bottom:0;width:60%;display:flex;flex-direction:column;justify-content:center}
+.kicker{text-transform:uppercase;letter-spacing:.28em;font-size:.7rem;font-weight:700;color:var(--muted)}
+.title{font-family:'Great Vibes',cursive;font-size:clamp(3rem,9vw,5.2rem);color:var(--ink);margin:4px 0 6px;line-height:1}
+.subtitle{font-family:'Playfair Display',serif;font-size:1.02rem;color:var(--muted);line-height:1.6;max-width:360px;margin:0 0 28px}
+.names{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(1.3rem,3.5vw,1.7rem);letter-spacing:.04em;color:var(--ink);margin:0 0 20px}
+.events{display:flex;flex-direction:column;gap:10px;margin-bottom:26px}
+.event-row{display:flex;align-items:baseline;gap:10px;font-size:.88rem;color:var(--ink)}
+.event-row .dot{width:5px;height:5px;border-radius:50%;background:var(--rust);flex:none}
+.event-row b{font-weight:700}
+.event-row span.place{color:var(--muted)}
+.site-note{font-size:.76rem;color:var(--muted);letter-spacing:.03em}
+.leaf-bottom{position:absolute;right:6%;bottom:5%;width:150px;color:#e3b792;opacity:.75}
+@media(max-width:620px){
+  .card{aspect-ratio:3/4}
+  .content{right:5%;width:70%}
+  .bar{width:14%}
+  .rings{width:52px}
+  .leaf-bottom{width:100px}
+}
+</style></head>
+<body>
+
+<div class="card">
+  <div class="bar"></div>
+  <div class="bar-inner"></div>
+
+  <img class="rings" src="assets/aliance.png" alt="Alliances de mariage">
+
+  <div class="content">
+    <div class="kicker">Faire-part</div>
+    <h1 class="title">Mariage</h1>
+    <p class="subtitle">Avec joie et gratitude envers Dieu, nous avons l'honneur de vous annoncer notre union et de vous inviter à la célébrer avec nous.</p>
+
+    <div class="names">Ibrahim Fofana &amp; Sita Berté</div>
+
+    <div class="events">
+      <div class="event-row"><span class="dot"></span><b>23 novembre 2026</b>&nbsp;—&nbsp;<span class="place">Mise en chambre</span></div>
+      <div class="event-row"><span class="dot"></span><b>26 novembre 2026</b>&nbsp;—&nbsp;<span class="place">Mariage religieux, Mosquée Dépôt 9</span></div>
+      <div class="event-row"><span class="dot"></span><b>30 novembre 2026</b>&nbsp;—&nbsp;<span class="place">Danse de réjouissance</span></div>
+    </div>
+
+    <div class="site-note">Plus d'infos et programme complet sur <span class="placeholder-url">[votre-site-ici]</span></div>
+  </div>
+
+  <svg class="leaf-bottom" viewBox="0 0 160 100" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M10 95 C50 70 100 50 150 8" stroke-linecap="round"/>
+    <path d="M40 78 C45 65 48 55 50 45" stroke-linecap="round"/>
+    <path d="M65 64 C68 52 70 42 70 32" stroke-linecap="round"/>
+    <path d="M90 48 C92 38 93 28 92 18" stroke-linecap="round"/>
+    <circle cx="150" cy="8" r="2.6" fill="currentColor" stroke="none"/>
+    <circle cx="142" cy="16" r="2.2" fill="currentColor" stroke="none"/>
+    <circle cx="155" cy="18" r="2" fill="currentColor" stroke="none"/>
+  </svg>
+</div>
+
+</body>
+</html>
