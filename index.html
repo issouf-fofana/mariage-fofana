@@ -41,7 +41,18 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
   .primary-nav .btn{width:100%;max-width:340px;justify-content:center}
 }
 .ico{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.6}
-.gift-wrap{position:relative;width:210px;height:200px;margin:24px auto 30px;display:grid;place-items:end center;filter:drop-shadow(0 18px 18px #a85c7920);animation:floaty 3.2s ease-in-out infinite}
+.gift-wrap{position:relative;width:210px;height:200px;margin:24px auto 30px;display:grid;place-items:end center;filter:drop-shadow(0 18px 18px #a85c7920)}
+.screen.active .gift-wrap{animation:riseIn .7s cubic-bezier(.22,1,.36,1) both,giftLife 3.2s ease-in-out .7s infinite}
+@keyframes giftLife{
+  0%,100%{transform:translateY(0) rotate(0)}
+  15%{transform:translateY(-14px) rotate(0)}
+  30%{transform:translateY(0) rotate(0)}
+  38%{transform:translateY(-4px) rotate(-6deg)}
+  44%{transform:translateY(-2px) rotate(6deg)}
+  50%{transform:translateY(-4px) rotate(-5deg)}
+  56%{transform:translateY(-2px) rotate(5deg)}
+  62%{transform:translateY(0) rotate(0)}
+}
 .gift{position:relative;width:150px;height:108px;background:linear-gradient(110deg,#eab4c6,#d98fa9 55%,#c97896);border-radius:5px 5px 10px 10px;box-shadow:inset 0 -7px 0 #b76b86}
 .gift:before{content:'';position:absolute;left:-8px;top:-13px;width:166px;height:24px;border-radius:5px;background:linear-gradient(90deg,#f0cbd7,#e7a9bf,#d58ba5);box-shadow:0 4px 6px #a85c7920}
 .gift:after{content:'';position:absolute;left:62px;top:-13px;width:25px;height:121px;background:linear-gradient(90deg,#f8e4b9,#d5b277,#f9e9c8)}
@@ -137,12 +148,14 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
 @media(max-width:420px){.progress-dots{display:none}}
 .back-btn:hover{transform:translateX(-2px)}
 .back-btn svg{width:18px;height:18px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.in-view{opacity:1;transform:translateY(0)}
 .confetti{position:fixed;top:-20px;z-index:10;pointer-events:none;animation:fall var(--fall,3s) linear forwards}
 @keyframes fall{to{transform:translate3d(var(--drift,40px),110vh,0) rotate(760deg);opacity:.15}}
 .hidden{display:none!important}
 .reduced *{animation-duration:.01ms!important;transition-duration:.01ms!important}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
-@media(max-width:420px){main{padding:28px 16px}.gift-wrap{transform:scale(.9);margin:10px auto 15px}.letter-envelope{height:170px}.letter-card{padding:30px 23px}.btn{padding:14px 21px}.event-meta div{min-width:100%}}
+@media(max-width:420px){main{padding:28px 16px}.gift-wrap{margin:10px auto 15px;zoom:.9}.letter-envelope{height:170px}.letter-card{padding:30px 23px}.btn{padding:14px 21px}.event-meta div{min-width:100%}}
 </style></head>
 <body><div class="grain"></div><div class="sparkles" id="sparkles" aria-hidden="true"></div>
 <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
@@ -189,7 +202,7 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
   <h1 class="headline" id="couple-title">Les mariés</h1>
 
   <div class="couple-grid">
-    <div class="couple-card">
+    <div class="couple-card reveal">
       <div class="couple-photo"><img src="assets/ibrahim1.jpeg" alt="Ibrahim Fofana" onerror="this.closest('.couple-photo').classList.add('no-photo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke-linecap="round"/></svg></div>
       <h3 class="couple-name">Ibrahim</h3>
       <p class="couple-family">Fofana</p>
@@ -198,7 +211,7 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
     <div class="couple-divider" aria-hidden="true">
       <img src="assets/aliance.png" alt="">
     </div>
-    <div class="couple-card">
+    <div class="couple-card reveal">
       <div class="couple-photo"><img src="assets/sita1.jpeg" alt="Sita Berté" onerror="this.closest('.couple-photo').classList.add('no-photo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke-linecap="round"/></svg></div>
       <h3 class="couple-name">Sita</h3>
       <p class="couple-family">Berté</p>
@@ -233,7 +246,7 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
   </div>
 
   <div class="timeline">
-    <article class="event-card">
+    <article class="event-card reveal">
       <div class="event-badge">1</div>
       <div class="event-kicker">Étape 1</div>
       <h3 class="event-name">Mise en chambre</h3>
@@ -244,7 +257,7 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
       </div>
     </article>
 
-    <article class="event-card">
+    <article class="event-card reveal">
       <div class="event-badge">2</div>
       <div class="event-kicker">Étape 2</div>
       <h3 class="event-name">Mariage religieux</h3>
@@ -255,7 +268,7 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
       </div>
     </article>
 
-    <article class="event-card">
+    <article class="event-card reveal">
       <div class="event-badge">3</div>
       <div class="event-kicker">Étape 3</div>
       <h3 class="event-name">Réception</h3>
@@ -266,7 +279,7 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
       </div>
     </article>
 
-    <article class="event-card">
+    <article class="event-card reveal">
       <div class="event-badge">4</div>
       <div class="event-kicker">Étape 4</div>
       <h3 class="event-name">Danse de réjouissance</h3>
@@ -291,11 +304,11 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
   <h1 class="headline" id="infos-title">Informations<br><span class="script">pratiques</span></h1>
 
   <div class="info-grid">
-    <div class="info-card">
+    <div class="info-card reveal">
       <svg class="ico" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3Z" stroke-linejoin="round"/><path d="M14 3v4h4" stroke-linejoin="round"/></svg>
       <h3>Dress code</h3><p> complet blanc</p>
     </div>
-    <div class="info-card">
+    <div class="info-card reveal">
       <svg class="ico" viewBox="0 0 24 24"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a1 1 0 0 1-1 1C9.5 20 4 14.5 4 5a1 1 0 0 1 1-1Z" stroke-linejoin="round"/></svg>
       <h3>Contact</h3><p>07 07 38 97 73<br>07 59 17 76 81</p>
     </div>
@@ -371,10 +384,27 @@ function updateProgress(id){
 }
 const history_=JSON.parse(sessionStorage.getItem('screenHistory')||'[]');
 if(history_.length===0)history_.push('welcome');
+const revealObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.15});
+function armReveals(screenEl){
+  const items=screenEl.querySelectorAll('.reveal:not(.in-view)');
+  items.forEach((el,i)=>{
+    el.style.transitionDelay=(i%4*0.08)+'s';
+    revealObserver.observe(el);
+  });
+}
 function show(id,push=true){
   screens.forEach(s=>s.classList.toggle('active',s.id===id));
   window.scrollTo({top:0,behavior:'smooth'});
   updateProgress(id);
+  const activeScreen=document.getElementById(id);
+  if(activeScreen)armReveals(activeScreen);
   if(push){
     if(history_[history_.length-1]!==id)history_.push(id);
     sessionStorage.setItem('screenHistory',JSON.stringify(history_));
