@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f9efe6">
+<title>Invitation — Ibrahim &amp; Sita</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--rust:#c17a4e;--cream:#fbf2e9;--ink:#5a3d2b;--muted:#8a6a51;--gold:#c7a46a}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#e9e2d8;font-family:'DM Sans',sans-serif;padding:24px}
+.card{position:relative;width:420px;max-width:100%;background:var(--cream);overflow:hidden;box-shadow:0 30px 70px #00000022;border-radius:4px;padding:38px 32px 34px;text-align:center}
+.curl{position:absolute;border-radius:50%;background:var(--ink)}
+.curl.tl{left:-50px;top:-60px;width:160px;height:160px}
+.curl.br{right:-55px;bottom:-65px;width:170px;height:170px}
+.dots{position:absolute;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.dots span{width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.dots.tr{right:20px;top:20px}
+.dots.bl{left:20px;bottom:20px}
+.mark{display:flex;align-items:center;justify-content:center;gap:8px;margin:4px 0 4px;position:relative;z-index:2}
+.mark .ico{width:22px;height:22px;color:var(--ink)}
+.mark b{font-family:'Playfair Display',serif;letter-spacing:.14em;text-transform:uppercase;font-size:.9rem;color:var(--ink)}
+.rule{width:50px;height:1.5px;background:var(--gold);margin:10px auto 18px;position:relative;z-index:2}
+.title{font-family:'Playfair Display',serif;font-weight:700;font-size:2.1rem;letter-spacing:.02em;color:var(--ink);margin:0;line-height:1.15;position:relative;z-index:2}
+.title small{display:block;font-family:'Playfair Display',serif;font-weight:600;font-size:1.3rem;color:var(--rust);margin-top:2px}
+.qr-wrap{width:200px;height:200px;margin:28px auto 8px;background:#fff;border:2px solid var(--gold);border-radius:14px;display:grid;place-items:center;padding:14px;position:relative;z-index:2;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.qr-wrap:hover{transform:translateY(-3px);box-shadow:0 10px 20px #0000001a}
+.qr-wrap img{width:100%;height:100%;object-fit:contain}
+.qr-hint{font-size:.72rem;letter-spacing:.04em;color:var(--muted);margin:0 0 18px;position:relative;z-index:2}
+.caption{font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.6;margin:0 0 6px;position:relative;z-index:2}
+.names{font-family:'Great Vibes',cursive;font-size:1.9rem;color:var(--ink);margin:8px 0 0;position:relative;z-index:2}
+.thanks{display:inline-block;margin-top:22px;padding:9px 26px;border-radius:999px;background:var(--ink);color:var(--cream);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;position:relative;z-index:2}
+</style></head>
+<body>
+
+<div class="card">
+  <div class="curl tl"></div>
+  <div class="curl br"></div>
+  <div class="dots tr"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="dots bl"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <div class="mark">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="18" cy="26" r="9"/><circle cx="30" cy="26" r="9"/></svg>
+    <b>Invitation</b>
+  </div>
+
+  <h1 class="title">Scannez ici<small>pour découvrir l'invitation</small></h1>
+
+  <div class="rule"></div>
+
+  <a class="qr-wrap" href="https://issouf-fofana.github.io/mariage-fofana/" target="_blank" rel="noopener"><img src="assets/qrcode.png" alt="QR code vers le site de l'invitation"></a>
+  <p class="qr-hint">Cliquez sur le code pour ouvrir le lien</p>
+
+  <p class="caption">Programme complet, dates et lieux<br>vous attendent sur notre site.</p>
+  <div class="names">Ibrahim &amp; Sita</div>
+
+  <div class="thanks">Avec amour, Fofana &amp; Berté</div>
+</div>
+
+</body>
+</html>
