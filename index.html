@@ -120,6 +120,7 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
 .info-card h3{font-family:'Playfair Display',serif;font-size:1rem;color:#7e4d60;margin:0 0 6px}
 .info-card p{font-size:.84rem;color:var(--muted);line-height:1.6;margin:0;word-break:break-word}
 .letter-tools{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:24px}
+.share-hint{margin-top:14px;font-size:.78rem;color:#a75e79;font-weight:600}
 .footer-note{margin-top:30px;font-size:.72rem;letter-spacing:.06em;color:#b58b98}
 .back-btn{position:fixed;top:16px;left:16px;z-index:50;appearance:none;border:1px solid #ead1da;background:#fff9f8cc;color:#985a70;border-radius:999px;width:40px;height:40px;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 16px #b66e8b18;transition:transform .2s}
 .progress-track{position:fixed;top:0;left:0;right:0;height:4px;z-index:55;background:#ffffff40}
@@ -335,11 +336,16 @@ Nous avons hâte de célébrer ce moment avec vous.</div>
     <div class="signature" id="signature">Avec amour, la famille Fofana &amp; Berté ♡</div>
   </article>
   <div class="letter-tools">
+    <button class="btn" id="shareInvite">
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-3.8M8.6 13.4l6.8 3.8" stroke-linecap="round"/></svg>
+      Partager l'invitation
+    </button>
     <button class="btn secondary" id="restart">
       <svg class="ico" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.5-5.8M4 5v4h4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Revoir l'invitation
     </button>
   </div>
+  <div class="share-hint hidden" id="shareHint">Lien copié&nbsp;!</div>
   <div class="footer-note">UNE INVITATION À GARDER PRÉCIEUSEMENT</div>
 </section>
 
@@ -403,6 +409,18 @@ document.getElementById('toInfos').addEventListener('click',()=>show('infos'));
 document.getElementById('toLetter').addEventListener('click',()=>show('envelopeScreen'));
 document.getElementById('readLetter').addEventListener('click',()=>{const env=document.getElementById('envelope');env.classList.add('open');setTimeout(()=>show('letterScreen'),650)});
 document.getElementById('restart').addEventListener('click',()=>{document.getElementById('envelope').classList.remove('open');show('welcome')});
+document.getElementById('shareInvite').addEventListener('click',async()=>{
+  const shareData={title:"Mariage d'Ibrahim & Sita",text:"Vous êtes invité(e) au mariage d'Ibrahim et Sita !",url:location.origin+location.pathname};
+  if(navigator.share){
+    try{await navigator.share(shareData);return}catch(err){if(err.name==='AbortError')return}
+  }
+  try{
+    await navigator.clipboard.writeText(shareData.url);
+    const hint=document.getElementById('shareHint');
+    hint.classList.remove('hidden');
+    setTimeout(()=>hint.classList.add('hidden'),2200);
+  }catch(err){}
+});
 
 const target=new Date('2026-11-26T00:00:00');
 function cdTick(){
