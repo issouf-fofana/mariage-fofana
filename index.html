@@ -47,6 +47,8 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
 .bow-knot{position:absolute;z-index:3;width:19px;height:19px;border-radius:40% 60% 45% 55%;background:linear-gradient(135deg,#f9e7bd,#bd9256);top:14px;left:43px}
 .gift-glow{position:absolute;width:230px;height:130px;bottom:0;background:radial-gradient(ellipse,#e6a9c12a,transparent 68%)}
 .tiny-note{font-size:.78rem;color:#b58b98;margin-top:18px}
+.teaser{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:26px;padding:12px 18px;border-radius:999px;background:#fff6f0cc;border:1px dashed #e3b792;font-size:.78rem;font-style:italic;color:#9a6b4d;max-width:380px;margin-left:auto;margin-right:auto}
+.teaser .ico{flex:none}
 .ribbon-line{display:flex;align-items:center;justify-content:center;gap:12px;color:#c7a46a;margin:20px auto}
 .ribbon-line:before,.ribbon-line:after{content:'';height:1px;width:65px;background:linear-gradient(90deg,transparent,#c7a46a)}
 .ribbon-line:after{transform:rotate(180deg)}
@@ -120,6 +122,13 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
 .letter-tools{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:24px}
 .footer-note{margin-top:30px;font-size:.72rem;letter-spacing:.06em;color:#b58b98}
 .back-btn{position:fixed;top:16px;left:16px;z-index:50;appearance:none;border:1px solid #ead1da;background:#fff9f8cc;color:#985a70;border-radius:999px;width:40px;height:40px;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 16px #b66e8b18;transition:transform .2s}
+.progress-track{position:fixed;top:0;left:0;right:0;height:4px;z-index:55;background:#ffffff40}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--rose));width:0%;transition:width .6s cubic-bezier(.22,1,.36,1)}
+.progress-dots{position:fixed;top:14px;right:16px;z-index:50;display:flex;gap:6px}
+.progress-dots span{width:7px;height:7px;border-radius:50%;background:#e7c3cf;transition:background .4s,transform .4s}
+.progress-dots span.done{background:var(--gold)}
+.progress-dots span.current{background:var(--rose-dark);transform:scale(1.35)}
+@media(max-width:420px){.progress-dots{display:none}}
 .back-btn:hover{transform:translateX(-2px)}
 .back-btn svg{width:18px;height:18px}
 .confetti{position:fixed;top:-20px;z-index:10;pointer-events:none;animation:fall var(--fall,3s) linear forwards}
@@ -130,6 +139,8 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
 @media(max-width:420px){main{padding:28px 16px}.gift-wrap{transform:scale(.9);margin:10px auto 15px}.letter-envelope{height:170px}.letter-card{padding:30px 23px}.btn{padding:14px 21px}.event-meta div{min-width:100%}}
 </style></head>
 <body><div class="grain"></div><div class="sparkles" id="sparkles" aria-hidden="true"></div>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-dots" id="progressDots" aria-hidden="true"></div>
 <main>
 
 <section class="screen active" id="welcome" aria-labelledby="welcome-title">
@@ -142,6 +153,10 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
     Ouvrir l'invitation
   </button>
   <div class="tiny-note">Avec joie et gratitude envers Dieu.</div>
+  <div class="teaser">
+    <svg class="ico" viewBox="0 0 24 24" style="color:#c7a46a"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z" stroke-linejoin="round"/></svg>
+    Un mot rien que pour vous vous attend à la fin de ce parcours…
+  </div>
 </section>
 
 <section class="screen" id="announce" aria-labelledby="announce-title">
@@ -328,11 +343,25 @@ Nous avons hâte de célébrer ce moment avec vous.</div>
 
 </main><script>
 const screens=[...document.querySelectorAll('.screen')];
+const journey=['welcome','announce','couple','program','infos','envelopeScreen','letterScreen'];
+const progressFill=document.getElementById('progressFill');
+const progressDots=document.getElementById('progressDots');
+journey.forEach(()=>{const d=document.createElement('span');progressDots.appendChild(d)});
+function updateProgress(id){
+  const idx=journey.indexOf(id);
+  if(idx<0)return;
+  progressFill.style.width=((idx)/(journey.length-1)*100)+'%';
+  [...progressDots.children].forEach((d,i)=>{
+    d.classList.toggle('done',i<idx);
+    d.classList.toggle('current',i===idx);
+  });
+}
 const history_=JSON.parse(sessionStorage.getItem('screenHistory')||'[]');
 if(history_.length===0)history_.push('welcome');
 function show(id,push=true){
   screens.forEach(s=>s.classList.toggle('active',s.id===id));
   window.scrollTo({top:0,behavior:'smooth'});
+  updateProgress(id);
   if(push){
     if(history_[history_.length-1]!==id)history_.push(id);
     sessionStorage.setItem('screenHistory',JSON.stringify(history_));
@@ -360,6 +389,7 @@ document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',g
     sessionStorage.removeItem('screenHistory');
     history_.length=0;history_.push('welcome');
     history.replaceState(null,'',location.pathname+location.search);
+    updateProgress('welcome');
   }
 })();
 const sparkles=document.getElementById('sparkles');for(let i=0;i<34;i++){const el=document.createElement('span');el.className='sparkle';el.textContent=['✧','·','✦','♡'][Math.floor(Math.random()*4)];el.style.left=Math.random()*100+'%';el.style.top=Math.random()*100+'%';el.style.setProperty('--d',(2+Math.random()*4)+'s');el.style.setProperty('--s',(8+Math.random()*14)+'px');el.style.animationDelay=(-Math.random()*5)+'s';sparkles.appendChild(el)}
