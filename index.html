@@ -189,37 +189,7 @@ main{position:relative;z-index:2;min-height:100svh;display:flex;justify-content:
     <svg class="ico" viewBox="0 0 24 24" style="color:#c7a46a"><path d="M12 4l2.5 5 5.5.8-4 3.9.9 5.5L12 16.8 7.1 19.2l.9-5.5-4-3.9 5.5-.8L12 4Z" stroke-linejoin="round"/></svg>
   </div>
   <p class="sub">Avec joie et gratitude envers Dieu, nous vous invitons à célébrer avec nous les noces d'Ibrahim et Sita.</p>
-  <div class="primary-nav"><button class="btn" id="toCouple">
-    <svg class="ico" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><circle cx="16" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14 14.3c2.9.3 5 2.6 5 5.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Découvrir les mariés
-  </button></div>
-  <div class="footer-note">AVEC AMOUR, LA FAMILLE FOFANA &amp; BERTÉ</div>
-</section>
-
-<section class="screen" id="couple" aria-labelledby="couple-title">
-  <button class="back-btn" data-back aria-label="Retour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  <div class="eyebrow">Faites connaissance</div>
-  <h1 class="headline" id="couple-title">Les mariés</h1>
-
-  <div class="couple-grid">
-    <div class="couple-card reveal">
-      <div class="couple-photo"><img src="assets/ibrahim.jpg" alt="Ibrahim Fofana" onerror="this.closest('.couple-photo').classList.add('no-photo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke-linecap="round"/></svg></div>
-      <h3 class="couple-name">Ibrahim</h3>
-      <p class="couple-family">Fofana</p>
-      <p class="couple-note">Un cœur fidèle, une foi solide et un sourire qui rassure tous ceux qui l'entourent.</p>
-    </div>
-    <div class="couple-divider" aria-hidden="true">
-      <img src="assets/aliance.png" alt="">
-    </div>
-    <div class="couple-card reveal">
-      <div class="couple-photo"><img src="assets/bijou.jpg" alt="Sita Berté" onerror="this.closest('.couple-photo').classList.add('no-photo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke-linecap="round"/></svg></div>
-      <h3 class="couple-name">Sita</h3>
-      <p class="couple-family">Berté</p>
-      <p class="couple-note">Une joie communicative, une grâce discrète et un cœur toujours tourné vers les autres.</p>
-    </div>
-  </div>
-
-  <div class="primary-nav"><button class="btn" id="toProgram" style="margin-top:34px">
+  <div class="primary-nav"><button class="btn" id="toProgram">
     <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 10h18M8 3v4M16 3v4" stroke-linecap="round"/></svg>
     Voir le programme
   </button></div>
@@ -369,7 +339,7 @@ Nous avons hâte de célébrer ce moment avec vous.</div>
 
 </main><script>
 const screens=[...document.querySelectorAll('.screen')];
-const journey=['welcome','announce','couple','program','infos','envelopeScreen','letterScreen'];
+const journey=['welcome','announce','program','infos','envelopeScreen','letterScreen'];
 const progressFill=document.getElementById('progressFill');
 const progressDots=document.getElementById('progressDots');
 journey.forEach(()=>{const d=document.createElement('span');progressDots.appendChild(d)});
@@ -438,7 +408,6 @@ document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',g
 const sparkles=document.getElementById('sparkles');for(let i=0;i<34;i++){const el=document.createElement('span');el.className='sparkle';el.textContent=['✧','·','✦','♡'][Math.floor(Math.random()*4)];el.style.left=Math.random()*100+'%';el.style.top=Math.random()*100+'%';el.style.setProperty('--d',(2+Math.random()*4)+'s');el.style.setProperty('--s',(8+Math.random()*14)+'px');el.style.animationDelay=(-Math.random()*5)+'s';sparkles.appendChild(el)}
 function confetti(){const colors=['#d98da7','#f1d4df','#d5b17c','#fffaf7','#b96d89'];for(let i=0;i<90;i++){const e=document.createElement('i');e.className='confetti';e.style.left=Math.random()*100+'vw';e.style.background=colors[Math.floor(Math.random()*colors.length)];e.style.width=(4+Math.random()*6)+'px';e.style.height=(7+Math.random()*10)+'px';e.style.borderRadius=Math.random()>.5?'50%':'2px';e.style.setProperty('--fall',(2.4+Math.random()*2.8)+'s');e.style.setProperty('--drift',(-100+Math.random()*200)+'px');e.style.animationDelay=(Math.random()*.7)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),6500)}}
 document.getElementById('openGift').addEventListener('click',()=>{show('announce');confetti()});
-document.getElementById('toCouple').addEventListener('click',()=>show('couple'));
 document.getElementById('toProgram').addEventListener('click',()=>show('program'));
 document.getElementById('toInfos').addEventListener('click',()=>show('infos'));
 document.getElementById('toLetter').addEventListener('click',()=>show('envelopeScreen'));
