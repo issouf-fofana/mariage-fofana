@@ -92,6 +92,24 @@ main{padding-bottom:calc(46px + env(safe-area-inset-bottom,0px))}
 #rideau.entre{visibility:visible;transform:translateY(-40vh);transition:transform .62s cubic-bezier(.65,0,.3,1)}
 #rideau.entre svg{opacity:1;transition-delay:.25s}
 #rideau.sort{visibility:visible;transform:translateY(-185vh);transition:transform .72s cubic-bezier(.65,0,.3,1)}
+
+/* Transition : iris doré qui s'ouvre depuis le centre */
+#rideau.iris{position:fixed;inset:0;height:100vh;border-radius:0;transform:none;background:radial-gradient(circle,var(--casse) 0%,var(--casse) 100%);clip-path:circle(0% at 50% 50%);transition:none}
+#rideau.iris.entre{visibility:visible;clip-path:circle(150% at 50% 50%);transition:clip-path .62s cubic-bezier(.65,0,.3,1)}
+#rideau.iris.entre svg{top:50vh;opacity:1;transition-delay:.2s}
+#rideau.iris.sort{visibility:visible;clip-path:circle(0% at 50% 50%);transition:clip-path .62s cubic-bezier(.65,0,.3,1)}
+
+/* Transition : voile qui glisse depuis la droite */
+#rideau.voile{position:fixed;inset:0;height:100vh;border-radius:0;transform:translateX(100%);transition:none}
+#rideau.voile.entre{visibility:visible;transform:translateX(0);transition:transform .55s cubic-bezier(.65,0,.3,1)}
+#rideau.voile.entre svg{top:50vh;opacity:1;transition-delay:.18s}
+#rideau.voile.sort{visibility:visible;transform:translateX(-100%);transition:transform .6s cubic-bezier(.65,0,.3,1)}
+
+/* Transition : fondu doux avec léger zoom, sans forme */
+#rideau.fondu-doux{position:fixed;inset:0;height:100vh;border-radius:0;transform:scale(1.04);opacity:0;transition:none}
+#rideau.fondu-doux.entre{visibility:visible;opacity:1;transform:scale(1);transition:opacity .5s ease,transform .5s var(--ease)}
+#rideau.fondu-doux.entre svg{top:50vh;opacity:1;transition-delay:.15s}
+#rideau.fondu-doux.sort{visibility:visible;opacity:0;transform:scale(.97);transition:opacity .45s ease,transform .45s var(--ease)}
 #petales{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:15}
 
 /* ───────── Les mariés ───────── */
@@ -469,17 +487,20 @@ function rejouer(section) {
   section.querySelectorAll(".rev").forEach(el => { el.classList.remove("vu"); io.observe(el); });
   section.querySelectorAll(".photo,.noms span").forEach(el => el.getAnimations().forEach(an => { an.cancel(); an.play(); }));
 }
+const effetsTransition = ["", "iris", "voile", "fondu-doux"];
 async function allerA(i) {
   if (calme) { cibles[i].scrollIntoView({ behavior: "instant" }); return; }
   if (enTransition) return;
   enTransition = true;
   const r = $("rideau");
-  r.className = "motif entre";
+  const effet = effetsTransition[i % effetsTransition.length];
+  const classe = effet ? `motif ${effet}` : "motif";
+  r.className = `${classe} entre`;
   await pause(680);
   cibles[i].scrollIntoView({ behavior: "instant" });
   rejouer(cibles[i]); suivi();
   await pause(120);
-  r.className = "motif sort";
+  r.className = `${classe} sort`;
   await pause(760);
   r.className = "motif";
   enTransition = false;
