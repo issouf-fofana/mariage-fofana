@@ -1,14 +1,14 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Mariage Ibrahim & Sita</title>
-<meta name="description" content="Invitation au mariage religieux de FOFANA & BERTE, le dimanche 29 novembre 2026.">
+<meta name="description" content="Invitation au mariage religieux de FOFANA & BERTE, le jeudi 26 novembre 2026.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mariage Ibrahim & Sita">
-<meta property="og:description" content="Invitation au mariage religieux de FOFANA & BERTE, le dimanche 29 novembre 2026.">
+<meta property="og:description" content="Invitation au mariage religieux de FOFANA & BERTE, le jeudi 26 novembre 2026.">
 <meta property="og:image" content="https://issouf-fofana.github.io/mariage-fofana/assets/couple2.jpg">
 <meta property="og:url" content="https://issouf-fofana.github.io/mariage-fofana/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mariage Ibrahim & Sita">
-<meta name="twitter:description" content="Invitation au mariage religieux de FOFANA & BERTE, le dimanche 29 novembre 2026.">
+<meta name="twitter:description" content="Invitation au mariage religieux de FOFANA & BERTE, le jeudi 26 novembre 2026.">
 <meta name="twitter:image" content="https://issouf-fofana.github.io/mariage-fofana/assets/couple2.jpg">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Italiana&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
@@ -391,7 +391,7 @@ main{padding-bottom:calc(46px + env(safe-area-inset-bottom,0px))}
   <section id="decompte" class="band">
     <div class="rev">
       <h2 class="titre">Plus que quelques instants</h2>
-      <p class="sous">Avant le mariage religieux du dimanche 29 novembre 2026</p>
+      <p class="sous">Avant le mariage religieux du jeudi 26 novembre 2026</p>
       <div class="compteur" id="compteur" role="timer" aria-label="Temps restant avant le mariage religieux">
         <div><b id="c-j">00</b><span>Jours</span></div>
         <div><b id="c-h">00</b><span>Heures</span></div>
@@ -434,12 +434,12 @@ main{padding-bottom:calc(46px + env(safe-area-inset-bottom,0px))}
    maps    : lien Google Maps précis (facultatif) ; sinon il est construit à partir de l'adresse. */
 const INVITATION = {
   lienPartage: "https://issouf-fofana.github.io/mariage-fofana",
-  cibleCompteur: "2026-11-29T00:00:00Z",
+  cibleCompteur: "2026-11-26T09:00:00Z",
   evenements: [
-    { titre:"Mise en chambre", date:"Lundi 23 novembre 2026", icone:"chambre", adresse:"", maps:"" },
-    { titre:"Mariage religieux", date:"Dimanche 29 novembre 2026", icone:"mosquee", central:true, adresse:"", maps:"" },
-    { titre:"Réception", date:"Date à confirmer", icone:"deux-lanternes", adresse:"", maps:"" },
-    { titre:"Danse de réjouissance", date:"Lundi 30 novembre 2026", icone:"tamtam", adresse:"", maps:"" }
+    { titre:"Mise en chambre", date:"Lundi 23 novembre 2026 · 9h", icone:"chambre", adresse:"Mosquée Dépôt 9", maps:"https://maps.app.goo.gl/LC8gY4nQL8ZPhfUw9" },
+    { titre:"Mariage religieux", date:"Jeudi 26 novembre 2026 · 9h", icone:"mosquee", central:true, adresse:"Mosquée Dépôt 9", maps:"https://maps.app.goo.gl/LC8gY4nQL8ZPhfUw9" },
+    { titre:"Réception", date:"Dimanche 29 novembre 2026 · 9h", icone:"deux-lanternes", adresse:"21e arrondissement", maps:"https://maps.app.goo.gl/DSiJHPnD11fpCbrZA" },
+    { titre:"Danse de réjouissance", date:"Lundi 30 novembre 2026", icone:"tamtam", adresse:"Dépôt 9", maps:"https://maps.app.goo.gl/6aRQyNobWXtkx8Po6" }
   ]
 };
 
@@ -520,7 +520,7 @@ const minuteur = setInterval(compter, 1000); compter();
 
 /* Partage */
 const lien = () => INVITATION.lienPartage.startsWith("http") ? INVITATION.lienPartage : location.href.split("#")[0];
-const message = () => `Vous êtes cordialement invités au mariage religieux de FOFANA & BERTE, le dimanche 29 novembre 2026.\nDécouvrez notre invitation : ${lien()}`;
+const message = () => `Vous êtes cordialement invités au mariage religieux de FOFANA & BERTE, le jeudi 26 novembre 2026.\nDécouvrez notre invitation : ${lien()}`;
 $("whatsapp").href = "https://wa.me/?text=" + encodeURIComponent(message());
 $("copier").addEventListener("click", async () => {
   try { await navigator.clipboard.writeText(lien()); $("copie-etat").textContent = "Lien copié."; }
